@@ -4,10 +4,13 @@ import { sanityClient } from "../../lib/sanity";
 sanityClient.config({
    token:process.env.TOKEN
 });
-
-type Data = {
-   likes: string
+// Property 'likes' does not exist on type 'void | SanityDocument<any>'.
+type SanityDocument = {
+   data:{
+      likes: string
+   }
  }
+
 
 
 const likeButtonHandler = async( req: NextApiRequest, res: NextApiResponse ):Promise<void>=>{
@@ -19,8 +22,9 @@ const likeButtonHandler = async( req: NextApiRequest, res: NextApiResponse ):Pro
    .inc({likes:1})
    .commit()
    .catch( error=>console.log(error))
-   
-   res.status(200).json({ likes: data.likes });
+
+   res.status(200).json({ likes: data });
+
 
 }
 
