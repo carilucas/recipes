@@ -50,7 +50,7 @@ const Recipe :NextPage = ( { data, preview }:InferGetStaticPropsType<typeof getS
    const handleLike = async () => {
       const res = await fetch("/api/handle-like", {
         method: "POST",
-        body: JSON.stringify({ _id: recipe._id }),
+        body: JSON.stringify({ _id: recipe?._id }),
       })
       const data = await res.json();
       const {likes} = data.likes;
@@ -69,7 +69,7 @@ const Recipe :NextPage = ( { data, preview }:InferGetStaticPropsType<typeof getS
        <h1>{recipe?.name}</h1>
        <button onClick={ handleLike } className="like-button">{likes} Likes</button>
        <main className='content'>
-         <Image src={ urlFor(data?.recipe?.mainImage).url() } alt={recipe.name} width={400} height={400} />
+         <Image src={ urlFor(data?.recipe?.mainImage).url() } alt={recipe?.name} width={400} height={400} />
          <div className='breackdown'>
             <ul className='ingredients'>
                {
