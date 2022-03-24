@@ -52,10 +52,10 @@ const Recipe :NextPage = ( { data, preview }:InferGetStaticPropsType<typeof getS
         method: "POST",
         body: JSON.stringify({ _id: recipe._id }),
       })
-  
       const data = await res.json();
-  
-      setLikes(data.likes);
+      const {likes} = data.likes;
+      
+      setLikes(likes);
     };
 
    const router = useRouter();
