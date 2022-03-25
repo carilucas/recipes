@@ -40,7 +40,7 @@ type IngredientProp = {
 const Recipe :NextPage = ( { data, preview }:InferGetStaticPropsType<typeof getStaticProps>  ) => {
    
   const { data: recipe } = usePreviewSubscription(recipeQuery, {
-    params: { slug: data.recipe?.slug.current },
+    params: { slug: data?.recipe?.slug.current },
     initialData: data,
     enabled: preview,
   });
